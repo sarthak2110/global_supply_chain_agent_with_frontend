@@ -1,0 +1,14 @@
+.* 
+!.gitignore
+.idea/
+*/__pycache__/*
+.DS_Store
+.vscode/
+!.vscode/launch.json # Keeping VS Code launch configurations
+*.swp
+*.swo
+**.pyc
+**/__pycache__
+node_modules
+tfplan
+*.zip

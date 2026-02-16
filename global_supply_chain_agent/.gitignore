@@ -1,0 +1,57 @@
+# ----------------------------
+# Python
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ----------------------------
+# Virtual environments
+# ----------------------------
+.venv/
+venv/
+ENV/
+env/
+
+# ----------------------------
+# IDE / OS
+# ----------------------------
+.vscode/
+.idea/
+*.iml
+.DS_Store
+
+# ----------------------------
+# Secrets / local config
+# ----------------------------
+.env
+.env.*
+*.key
+*.pem
+*.p12
+secrets/
+**/config.py
+**/config*.py
+
+# If you specifically want only one config.py ignored (narrow scope), use:
+# agents/sub_agents/logistics_resolver_agent/config.py
+
+# ----------------------------
+# ADK local artifacts (sessions, local storage)
+# ----------------------------
+.adk/
+**/.adk/
+
+# ----------------------------
+# Maps/Generated files (optional)
+# ----------------------------
+maps/
+*.html
+*.log

@@ -1,0 +1,194 @@
+:root {
+    --bg-color: #f8fafc;
+    --primary-blue: #2563EB;
+    /* Original subtle glass gradient */
+    --sidebar-glass: linear-gradient(180deg, rgba(148, 163, 184, 0.2) 0%, rgba(71, 85, 105, 0.3) 100%);
+    --card-bg: #334155; /* Dark Slate */
+    --text-dark: #1e293b;
+    --text-light: #f1f5f9;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100%;
+}
+
+/* --- SIDEBAR (Original Glass Effect) --- */
+.sidebar {
+    width: 280px;
+    background: var(--sidebar-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.logo-icon { color: #60a5fa; font-size: 32px; }
+
+/* The "New Freight Query" Blue Button */
+.new-query-btn {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    margin-bottom: 30px;
+    transition: transform 0.2s;
+}
+.new-query-btn:hover { transform: translateY(-2px); }
+
+/* Sidebar Nav Items */
+.nav-menu { flex-grow: 1; display: flex; flex-direction: column; gap: 20px; }
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.8;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+.nav-item:hover { background: rgba(255,255,255,0.1); opacity: 1; }
+.nav-item.active { opacity: 1; border-left: 3px solid #60a5fa; padding-left: 12px; }
+
+.nav-text { display: flex; flex-direction: column; }
+.nav-text .title { font-size: 0.75rem; opacity: 0.7; }
+.nav-text .subtitle { font-weight: 500; font-size: 0.9rem; }
+.nav-text-single { font-weight: 500; font-size: 0.9rem; }
+
+.sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.8;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 60px;
+}
+
+.header-profile {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 60px;
+}
+
+/* Welcome Area */
+.welcome-area { max-width: 800px; margin: 0 auto; width: 100%; }
+h1 { font-size: 2.8rem; font-weight: 700; color: #0f172a; margin-bottom: 10px; }
+.highlight { color: var(--primary-blue); }
+.sub-headline { font-size: 1.2rem; color: #64748b; margin-bottom: 40px; }
+
+/* Action Cards */
+.action-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+
+.action-card {
+    background: var(--card-bg); /* Dark blue from image */
+    color: white;
+    padding: 20px 25px;
+    border-radius: 20px; /* Specific rounded styling */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 360px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.action-card:hover { transform: translateY(-4px); }
+.card-icon-box span { font-size: 28px; color: #93c5fd; }
+.action-card p { font-size: 0.95rem; line-height: 1.4; font-weight: 500; }
+
+/* --- INPUT BAR (Floating at Bottom) --- */
+.chat-interface {
+    margin-top: auto;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-wrapper {
+    background: white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+}
+
+input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 15px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #333;
+}
+
+.icon-btn { color: #94a3b8; cursor: pointer; margin-right: 15px; transform: rotate(45deg); }
+.send-btn {
+    background: var(--primary-blue);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.send-btn:hover { background: #1d4ed8; }
+
+.disclaimer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 15px;
+}

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- 1. GLOBAL RESET --- */
+:root {
+    --bg-color: #f8fafc;
+    --primary-blue: #2563EB;
+    /* Glass Gradient for Sidebar */
+    --sidebar-glass: linear-gradient(180deg, rgba(148, 163, 184, 0.2) 0%, rgba(71, 85, 105, 0.3) 100%);
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Hide User Avatar & Name (Keep UI Clean) */
+.cl-user-avatar, .cl-user-name { display: none !important; }
+
+/* Transparent Message Bubble */
+.cl-message { 
+    background: transparent !important; 
+    box-shadow: none !important; 
+    padding: 0 !important; 
+}
+
+/* --- 2. GLASS SIDEBAR OVERRIDE --- */
+/* Target the main Sidebar container */
+.MuiDrawer-paper {
+    background: var(--sidebar-glass) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-right: 1px solid rgba(255,255,255,0.2) !important;
+    color: white !important;
+    width: 280px !important;
+}
+
+/* --- 3. STYLING THE CHAT HISTORY LIST --- */
+/* Force all text in the sidebar (History Items) to be White */
+.MuiDrawer-paper a, 
+.MuiDrawer-paper span, 
+.MuiDrawer-paper p, 
+.MuiDrawer-paper svg {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+}
+
+/* Hover Effect for History Items */
+.MuiDrawer-paper a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px;
+}
+
+/* The Active Chat (Current Selection) */
+.MuiDrawer-paper a.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-left: 3px solid var(--primary-blue) !important;
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+/* --- 4. THE "NEW CHAT" BUTTON --- */
+/* This transforms the default button into your Blue Pill */
+button#new-chat-button {
+    background-color: var(--primary-blue) !important;
+    color: white !important;
+    border-radius: 50px !important; /* Pill Shape */
+    text-transform: none !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+    margin: 15px !important;
+    padding: 10px 20px !important;
+    border: none !important;
+}
+
+button#new-chat-button:hover {
+    background-color: #1d4ed8 !important;
+    transform: translateY(-2px);
+}
+
+/* --- 5. MAIN CONTENT STYLING --- */
+.scmgpt-container {
+    padding-top: 2vh;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.header-profile {
+    display: flex;
+    justify-content: flex-end;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+}
+
+h1 { font-size: 2.8rem; font-weight: 700; color: #0f172a; margin-bottom: 10px; }
+.highlight { color: var(--primary-blue); }
+.sub-headline { font-size: 1.2rem; color: #64748b; margin-bottom: 40px; }
+
+/* --- 6. ACTION CARDS --- */
+.action-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.action-card {
+    background: #334155; 
+    color: white;
+    padding: 20px 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 360px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+.action-card:hover { transform: translateY(-4px); }
+.card-icon { font-size: 1.8rem; }
+.card-text { font-size: 0.95rem; font-weight: 500; line-height: 1.4; }
+
+/* --- 7. INPUT BAR --- */
+#chat-input {
+    background: white !important;
+    border-radius: 50px !important;
+    padding: 24px 30px !important;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.08) !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #333 !important;
+}
+.cl-footer { display: none !important; }

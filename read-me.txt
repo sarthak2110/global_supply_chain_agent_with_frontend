@@ -1,0 +1,21 @@
+
+Agent:
+cd to global_supply_chain_agent/agents/sub_agents/logistics_resolver_agent
+adk api_server
+
+
+Frontend:
+cd to google-next-26/frontend
+chainlit run app.py -w --port 8501
+
+
+Quick test:
+Land:
+
+Get me a driving route from Hitech City Hyderabad to RGIA airport and save a map
+Walking route from Charminar to Golconda Fort
+
+Flying:
+
+Show me recent flight tracks from KJFK to EGLL (bad weather)
+Show 3 tracks from VIDP to VABB with lookback 72 hours
