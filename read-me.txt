@@ -1,21 +1,68 @@
 
 Agent:
-cd to global_supply_chain_agent/agents/sub_agents/logistics_resolver_agent
+cd global_supply_chain_agent
+source .venv/bin/activate
+cd agents/sub_agents/logistics_resolver_agent
 adk api_server
 
 
 Frontend:
-cd to google-next-26/frontend
+cd google-next-26/frontend
+source .venv/bin/activate
+chainlit run app.py -w --port 8501
+chainlit run app2-test.py -w --port 8501
+
+<Steps to get map>
+gcloud services enable iamcredentials.googleapis.com --project saas-poc-env
+
+
+gsutil iam ch \
+  "serviceAccount:infra-manager-sa@saas-poc-env.iam.gserviceaccount.com:objectViewer" \
+  gs://sarthak-test
+
+
+gcloud auth application-default login \
+  --impersonate-service-account="infra-manager-sa@saas-poc-env.iam.gserviceaccount.com"
+
+export GCS_BUCKET="sarthak-test"
+export GCS_OBJECT="maps/route_map.html"
+export SIGNED_URL_TTL_MIN="30"
+
+
+
 chainlit run app.py -w --port 8501
 
 
 Quick test:
 Land:
 
-Get me a driving route from Hitech City Hyderabad to RGIA airport and save a map
+Get me a driving route from Golconda Fort Hyderabad to RGIA airport and save a map
 Walking route from Charminar to Golconda Fort
 
 Flying:
 
 Show me recent flight tracks from KJFK to EGLL (bad weather)
 Show 3 tracks from VIDP to VABB with lookback 72 hours
+
+
+
+TESTING PROMPTS:
+
+1) do inventory analysis on `saas-poc-env.mcp.inventory_data` and tell me Which products are running low on stock?
+2) Show me the top-selling products at US-WEST-2 location `saas-poc-env.mcp.inventory_data`
+3) Get me a driving route from Golconda Fort Hyderabad to RGIA airport
+4) Show 3 tracks from VIDP to VABB with lookback 72 hours on map
+5) Primary supplier for SKU STEEL-A36 is unable to fulfill. Need 300 units delivered to Hyderabad within 10 days. Please evaluate backups using available quotes, recommend the best option, and draft a PO.
+
+
+
+Permissions on Agent engine SA:
+BigQuery Admin
+Developer Connect Read Token Accessor (Beta)
+Developer Connect Read Token Accessor (Beta)
+Model Armor Admin
+Storage Admin
+Vertex AI Reasoning Engine Service Agent
+Vertex AI Reasoning Engine Service Agent
+Vertex AI User
+Vertex AI User
