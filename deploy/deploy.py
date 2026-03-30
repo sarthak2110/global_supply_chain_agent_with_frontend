@@ -1,13 +1,20 @@
-# export PROJECT="adc-dev-478120"
+# export PROJECT="easysaas-adc-demo"
 # export LOCATION="us-central1"
-# export PROJECT_ID="adc-staging-478120"
-# export STAGING_BUCKET="gs://testing-london-adc"
-
+# export PROJECT_ID="easysaas-adc-demo"
+# export STAGING_BUCKET="gs://londonagent-repo-test"
+# gcloud auth application-default login
 
 import os
 
+
+os.environ.setdefault("PROJECT", "saas-poc-env")
+os.environ.setdefault("LOCATION", "us-central1")
+os.environ.setdefault("STAGING_BUCKET", "gs://saas_agent_bucket")
+
 # --- Imports ---
-from london_agent.agent import root_agent
+
+from agent.agent import root_agent
+# from ..global_supply_chain_agent.agent 
 from vertexai.preview import reasoning_engines
 from vertexai import agent_engines
 import vertexai
@@ -24,6 +31,13 @@ vertexai.init(
     staging_bucket=STAGING_BUCKET,
 )
 
+# --- ADK APP SECTION (Commented out to fix Version Error) ---
+# This block is only for local tracing and causes a crash with google-adk > 1.0.0.
+# Since we are deploying to the cloud (AgentEngine.create), we can safely skip it.
+# adk_app = reasoning_engines.AdkApp(
+#     agent=root_agent,
+#     enable_tracing=True,
+# )
 
 print(f"Current Directory: {os.getcwd()}")
 
@@ -32,22 +46,22 @@ try:
     remote_agent = agent_engines.AgentEngine.create(
         agent_engine=root_agent,                              
         requirements="./requirements.txt",
-        extra_packages=["./london_agent"],
-        display_name="London_manually",
-        description="deployed by deploy.py",
+        extra_packages=["./agent"],
+        display_name="global supply chain agent V2",
+        description="deployed by agent_engine_deploy.py",
         env_vars={
             "GOOGLE_GENAI_USE_VERTEXAI": "TRUE",
             "GOOGLE_CLOUD_AGENT_ENGINE_ENABLE_TELEMETRY": "TRUE",
             "OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT": "TRUE",
-            "MODEL_ARMOR_TEMPLATE_ID": "TravelApp_Armor",
-            "DB_TYPE": "sqlite",
+            "MAPS_GCS_BUCKET": "sarthak-test",
+            "GOOGLE_MAPS_API_KEY":"",
             # Pass these to the remote container as well just in case
-            "PROJECT_ID": PROJECT_ID,
-            "LOCATION": LOCATION,
-            "BIGQUERY_PROJECT_ID":PROJECT_ID
+            "PROJECT_ID": 'saas-poc-env',
+            "LOCATION": 'us-central1',
         }
     )
     print("✅ Deployment successful!")
     print(f"Agent Resource Name: {remote_agent.resource_name}")
 except Exception as e:
     print(f"❌ Deployment failed: {e}")
+
